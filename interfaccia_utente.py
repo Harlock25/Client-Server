@@ -85,45 +85,7 @@ def createEventWindow():  # create a nuova finestra per definire data, ora , sog
     save_button = Button(window_event, text="Salva", command=saveEvent)
     save_button.pack(pady=10)
     window_event.bind('<Return>', lambda event: saveEvent())
-
-def sendEmail():
-    global outlook
-    window_email=tk.Toplevel()
-    window_email.title("Email")
-
-    label_email = Label(window_email, text="email: ")
-    label_email.pack()
-    input_area_email = tk.Entry(window_email, width=40)
-    input_area_email.pack(padx=10, pady=10)
-
-    label_soggetto = Label(window_email, text="soggetto: ")
-    label_soggetto.pack()
-    input_area_soggetto = tk.Entry(window_email, width=40)
-    input_area_soggetto.pack(padx=10, pady=10)
-
-    label_corpo = Label(window_email, text="corpo email: ")
-    label_corpo.pack()
-    input_area_corpo = tk.Entry(window_email, width=40)
-    input_area_corpo.pack(padx=10, pady=10)
-
-    def saveSendEmail():
-        email=input_area_email.get()
-        soggetto=input_area_soggetto.get()
-        corpo=input_area_corpo.get()
-        Msg = outlook.CreateItem(0) # Email
-        outlook = win32com.client.Dispatch("Outlook.Application")
-        outlook.Session.Logon(emailUtente, password, True, True)
-        emailUtente=""
-        password=""
-        Msg.To = email # you can add multiple emails with the ; as delimiter. E.g. test@test.com; test2@test.com;
-        Msg.Subject = soggetto
-        Msg.Body = corpo
-        Msg.Send()
-
-    send_button = Button(window_email, text="Salva", command=saveSendEmail)
-    send_button.pack(pady=10)
-    window_email.bind('<Return>', lambda event: saveSendEmail())
-
+    
 def changeEventWindow(): #funzione per rinominare evento
     global outlook
     window_change_event = tk.Toplevel()
